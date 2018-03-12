@@ -1,1 +1,1 @@
-include ':app', ':ui-compont', ':net-compont'
+include ':app', ':ui-compont', ':net-compont' , 'common-utils'
