@@ -1,5 +1,6 @@
 package com.xiaochong.myandarch.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.databinding.DataBindingUtil;
@@ -48,11 +49,12 @@ public abstract class BaseActivity extends SupportActivity implements BaseView, 
   private TextView tvBack;
   private ViewGroup container;
 
-  Context context;
+  protected Activity mContext;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    mContext = this;
     activities.add(this);
     //强制竖屏(不强制加)
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -70,7 +72,6 @@ public abstract class BaseActivity extends SupportActivity implements BaseView, 
     initView();
     initData();
     setOnClick(R.id.tv_back_base_activity);
-    context = this;
   }
 
   public BaseActivity setTitles(CharSequence title) {
@@ -275,8 +276,10 @@ public abstract class BaseActivity extends SupportActivity implements BaseView, 
   @Override
   public void showLoading() {
     if (null == promptDialog) {
-      promptDialog.showLoading(getString(R.string.loading));
+      promptDialog = new PromptDialog(mContext);
     }
+    promptDialog.showLoading(getString(R.string.loading));
+
   }
 
   /**
