@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.xiaochong.myandarch.R;
+import com.xiaochong.net.netutils.HttpMethods;
 import com.xiaochong.ui_compont.prompt.PromptDialog;
 import com.xiaochong.ui_compont.toasty.MyToast;
 

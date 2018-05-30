@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
-import com.xiaochong.net.utils.HttpNovateClient;
+import com.xiaochong.net.netutils.HttpMethods;
 import com.xiaochong.ui_compont.toasty.MyToast;
 
 /**
@@ -15,16 +15,11 @@ import com.xiaochong.ui_compont.toasty.MyToast;
 
 public class MyApp extends Application {
 
-    public static final String BASE_URL = "https://api.walian.cn";
-    public static final int REQ_TIMEOUT = 60;
-
-
-
     @Override
     public void onCreate() {
         super.onCreate();
         Logger.addLogAdapter(new AndroidLogAdapter());
         MyToast.init(this , true , false);
-        HttpNovateClient.init( BASE_URL , BuildConfig.VERSION_NAME , REQ_TIMEOUT);
+        HttpMethods.init(this, getPackageName());
     }
 }

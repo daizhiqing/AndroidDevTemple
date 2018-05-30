@@ -1,22 +1,20 @@
 package com.xiaochong.myandarch;
 
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.orhanobut.logger.Logger;
-import com.tamic.novate.Throwable;
-import com.tamic.novate.callback.RxResultCallback;
 import com.xiaochong.myandarch.base.BaseActivity;
 import com.xiaochong.myandarch.databinding.ActivityMainBinding;
-import com.xiaochong.net.utils.HttpNovateClient;
-import com.xiaochong.ui_compont.prompt.PromptDialog;
+import com.xiaochong.net.entity.Req;
+import com.xiaochong.net.netutils.BaseObserver;
+import com.xiaochong.net.netutils.HttpMethods;
 import com.xiaochong.ui_compont.toasty.MyToast;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import io.reactivex.Observable;
+
 
 public class MainActivity extends BaseActivity {
 
@@ -46,38 +44,22 @@ public class MainActivity extends BaseActivity {
                 MyToast.success(activityMainBinding.btn2+"ssssssssssssssssss"+activityMainBinding.btn1);
                 break;
             case R.id.btn2:
+                HttpMethods.getInstance().setToken("dasdsadsadsadsads");
                 Map<String , Object> params = new HashMap<>();
                 params.put("channelId" ,7);
                 params.put("pageNum" ,1);
                 params.put("pageSize" ,10);
-                HttpNovateClient.getInstance(mContext).rxPost("/coins/getCoinIndex.open",params ,
-                        new RxResultCallback<Req>() {
-                            @Override
-                            public void onNext(Object tag, int code, String message, Req response) {
-                                Logger.i("tag=%s",tag);
-                                Logger.i("code=%s",code);
-                                Logger.i("message=%s",message);
-                                Logger.i("response=%s",response);
-                            }
 
-                            @Override
-                            public void onError(Object tag, Throwable e) {
-                            }
-                            @Override
-                            public void onCancel(Object tag, Throwable e) {
-                            }
-                            @Override
-                            public void onStart(Object tag) {
-                                super.onStart(tag);
-                                showLoading();
-                            }
-                            @Override
-                            public void onCompleted(Object tag) {
-                                super.onCompleted(tag);
-                                hideLoading();
-                            }
+                Observable observable =  HttpMethods.getInstance().getHttpApi().getDoubanDatanew(params);
+                HttpMethods.getInstance().toSubscribe(observable, new BaseObserver<Req>(mContext , true) {
+                    @Override
+                    public void onSuccess(Req dataEntity) {
 
-                        });                break;
+                    }
+                });
+
+                break;
+
         }
     }
 }

@@ -2,7 +2,6 @@ package com.xiaochong.ui_compont.edittext;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -10,6 +9,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
 import android.util.AttributeSet;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.xiaochong.ui_compont.R;
@@ -20,7 +20,7 @@ import com.xiaochong.ui_compont.R;
  * 描述：手机、银行卡、身份证输入框
  */
 
-public class ContentWithSpaceEditText extends AppCompatEditText {
+public class ContentWithSpaceEditText extends EditText {
     public static final int TYPE_PHONE = 0;
     public static final int TYPE_BANK_CARD = 1;
     public static final int TYPE_ID_CARD = 2;
