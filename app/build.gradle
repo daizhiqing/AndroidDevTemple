@@ -35,4 +35,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
     implementation project(':ui-compont')
     implementation project(':common-utils')
+
+    implementation 'org.bitcoinj:bitcoinj-core:0.14.7'
 }

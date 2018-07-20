@@ -11,28 +11,43 @@
         android:layout_height="match_parent"
         tools:context="com.xiaochong.myandarch.MainActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <com.xiaochong.ui_compont.edittext.ContentWithSpaceEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:input_type="phone"/>
         <LinearLayout
-            android:layout_marginTop="50dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btn_switch"
+                    android:onClick="onViewClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="切换"/>
+                <TextView
+                    android:id="@+id/tv_network"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
             <Button
                 android:id="@+id/btn1"
                 android:onClick="onViewClick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Toast"/>
+                android:text="同步钱包数据"/>
+           <android.support.v4.widget.NestedScrollView
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/base_dimen_100dp">
+               <TextView
+                   android:id="@+id/tv_show_data"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent" />
+           </android.support.v4.widget.NestedScrollView>
+
+
+
             <Button
                 android:id="@+id/btn2"
                 android:onClick="onViewClick"
