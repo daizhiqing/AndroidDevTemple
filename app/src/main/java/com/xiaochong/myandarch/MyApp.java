@@ -1,6 +1,8 @@
 package com.xiaochong.myandarch;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -21,5 +23,11 @@ public class MyApp extends Application {
         Logger.addLogAdapter(new AndroidLogAdapter());
         MyToast.init(this , true , false);
         HttpMethods.init(this, getPackageName());
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }
